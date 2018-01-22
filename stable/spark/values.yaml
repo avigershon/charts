@@ -48,14 +48,18 @@ Zeppelin:
   ServiceType: LoadBalancer
   Ingress:
     Enabled: true
-    Path: "/"
-    Tls: []
+  #  Path: "/"
+  #  Tls: []
   #    - Hosts:
   #    SecretName: zeppelin
   # Used to create an Ingress record.
-  # Hosts:
+    Hosts:
   # - example.local
-  # Annotations:
+    Annotations:
+      ## Nginx ingress controller (default)
+      ingress.kubernetes.io/rewrite-target: /
+      kubernetes.io/ingress.class: nginx
+  #  Annotations:
   #   kubernetes.io/ingress.class: nginx
   #   kubernetes.io/tls-acme: "true"
   # Tls:
