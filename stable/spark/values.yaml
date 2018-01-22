@@ -47,7 +47,7 @@ Zeppelin:
   ContainerPort: 8080
   ServiceType: LoadBalancer
   Ingress:
-    Enabled: false
+    Enabled: true
     Path: "/"
     Tls: []
   #    - Hosts:
