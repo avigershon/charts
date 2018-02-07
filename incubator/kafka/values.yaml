@@ -3,7 +3,7 @@
 # ------------------------------------------------------------------------------
 
 ## The StatefulSet installs 3 pods by default
-replicas: 3
+replicas: 2
 
 ## The kafka image repository
 image: "confluentinc/cp-kafka"
@@ -57,7 +57,7 @@ affinity: {}
 ## Configuration Overrides. Specify any Kafka settings you would like set on the StatefulSet
 ## here in map format, as defined in the official docs:
 ## ref: https://kafka.apache.org/documentation/#brokerconfigs
-configurationOverrides: {}
+configurationOverrides: {message.max.bytes:100000000}
 
 # ------------------------------------------------------------------------------
 # Zookeeper:
