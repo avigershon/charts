@@ -82,6 +82,7 @@ Master:
   Tolerations: {}
 
   Ingress:
+    enabled: true
     Annotations:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
