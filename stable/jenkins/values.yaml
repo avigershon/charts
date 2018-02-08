@@ -82,8 +82,10 @@ Master:
   Tolerations: {}
 
   Ingress:
-     
+  
+    Enabled: true
     Annotations:
+      ingress.kubernetes.io/rewrite-target: /
       kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
 
