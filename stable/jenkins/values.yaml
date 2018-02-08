@@ -83,6 +83,10 @@ Master:
 
   Ingress:
     enabled: true
+    
+    hosts:
+      - jenkins.cluster.local
+      
     Annotations:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
