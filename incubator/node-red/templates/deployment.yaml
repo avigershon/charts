@@ -39,9 +39,9 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
       restartPolicy: Always
       volumes:
-      - name: {{ .Release.Name }}
+      - name: {{ .Release.Name }}-data
         persistentVolumeClaim:
-          claimName:  {{ .Release.Name }}-data
+          claimName:  {{ .Release.Name }}-vol-claim
       - name: {{ .Release.Name }}-settings
         configMap:
           name: {{ .Release.Name }}-configmap
