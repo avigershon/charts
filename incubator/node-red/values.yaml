@@ -11,6 +11,26 @@ service:
   type: ClusterIP
   externalPort: 1880
   internalPort: 1880
+  
+persistence:
+  enabled: true
+
+  ## node-red data Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  # storageClass: "-"
+  accessMode: ReadWriteOnce
+  size: 100Mi
+
+  ## If subPath is set mount a sub folder of a volume instead of the root of the volume.
+  ## This is especially handy for volume plugins that don't natively support sub mounting (like glusterfs).
+  ##
+  subPath: ""
+  
 ingress:
   enabled: false
   # Used to create an Ingress record.
