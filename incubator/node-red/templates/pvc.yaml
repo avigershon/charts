@@ -1,4 +1,3 @@
-{{- if eq .Values.mode "standalone" "shared" }}
 {{- if .Values.persistence.enabled }}
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -6,11 +5,7 @@ metadata:
   name:  {{ .Release.Name }}-data
 spec:
   accessModes:
-    {{- if eq .Values.mode "shared" }}
     - ReadWriteMany
-    {{- else }}
-    - {{ .Values.persistence.accessMode | quote }}
-    {{- end }}
   resources:
     requests:
       storage: {{ .Values.persistence.size | quote }}
@@ -19,7 +14,6 @@ spec:
   storageClassName: ""
 {{- else }}
   storageClassName: "{{ .Values.persistence.storageClass }}"
-{{- end }}
 {{- end }}
 {{- end }}
 {{- end }}
