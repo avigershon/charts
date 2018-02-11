@@ -3,8 +3,7 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
 data:
-  {{- $files := .Files }}
-  {{- range tuple "config/settings.js" }}
-  {{ . }}: |-
-    {{ $files.Get . }}
-  {{- end }}
+  {{ range $path := .Files.Glob "config/*" }}
+  {{ $path }}: |
+  {{ .Files.Get $path }}
+  {{ end }}
