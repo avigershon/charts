@@ -40,14 +40,11 @@ spec:
       restartPolicy: Always
       volumes:
       - name: {{ .Release.Name }}-data
-        persistentVolumeClaim:
-          claimName:  {{ .Release.Name }}-vol-claim
+        gcePersistentDisk:
+          pdName:  {{ .Release.Name }}-disk
       - name: {{ .Release.Name }}-settings
         configMap:
           name: {{ .Release.Name }}-configmap
-          items:
-          - key: settings.js
-            path: settings.js
     {{- if .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 8 }}
