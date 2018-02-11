@@ -16,32 +16,32 @@ spec:
         release: {{ .Release.Name }}
     spec:
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - containerPort: {{ .Values.service.internalPort }}
-          livenessProbe:
-            httpGet:
-              path: /
-              port: {{ .Values.service.internalPort }}
-          readinessProbe:
-            httpGet:
-              path: /
-              port: {{ .Values.service.internalPort }}
-          resources:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+          - containerPort: {{ .Values.service.internalPort }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.service.internalPort }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.service.internalPort }}
+        resources:
 {{ toYaml .Values.resources | indent 12 }}
-          volumeMounts:
-          - mountPath: /usr/src/node-red/node_modules/node-red
-            name: settings
-        restartPolicy: Always
-        volumes:
-        - name: settings
-          configMap:
-            name: {{ .Release.Name }}-configmap
-            items:
-            - key: settings.js
-              path: settings.js
+        volumeMounts:
+        - mountPath: /usr/src/node-red/node_modules/node-red
+          name: settings
+      restartPolicy: Always
+      volumes:
+      - name: settings
+        configMap:
+        name: {{ .Release.Name }}-configmap
+        items:
+        - key: settings.js
+          path: settings.js
     {{- if .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 8 }}
