@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-config
 data:
-  token: |-
+  settings.js: |-
     {{ .Files.Get "config/settings.js" | b64enc }}
