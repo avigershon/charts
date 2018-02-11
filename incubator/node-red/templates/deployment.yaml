@@ -39,12 +39,12 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
       restartPolicy: Always
       volumes:
-      - name: node-red
+      - name: {{ .Release.Name }}
         persistentVolumeClaim:
-          claimName: node-red-data
-      - name: settings
+          claimName:  {{ .Release.Name }}-data
+      - name: {{ .Release.Name }}-settings
         configMap:
-          name: node-red-configmap
+          name: {{ .Release.Name }}-configmap
           items:
           - key: settings.js
             path: settings.js
