@@ -4,4 +4,4 @@ metadata:
   name: {{ .Release.Name }}-config
 data:
   settings.js: |-
-    {{ .Files.Get "config/settings.js" | b64enc }}
+    {{ .Files.Get "config/settings.js" }}
