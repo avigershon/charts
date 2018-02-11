@@ -39,7 +39,7 @@ spec:
         volumes:
         - name: settings
           configMap:
-            name: node-red-config
+            name: {{ .Release.Name }}-configmap
             items:
             - key: settings.js
               path: settings.js
