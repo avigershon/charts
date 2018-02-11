@@ -1,8 +1,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-config
-type: Opaque
+  name: {{ .Release.Name }}-configmap
 data:
-  settings.js: |-
-    {{ .Files.Get "config/settings.js" | b64enc }}
+  {{- $files := .Files }}
+  {{- range tuple "config/settings.js" }}
+  {{ . }}: |-
+    {{ $files.Get . }}
+  {{- end }}
