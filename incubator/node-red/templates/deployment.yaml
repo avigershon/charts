@@ -32,6 +32,17 @@ spec:
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- if .Values.nodeSelector }}
+          volumeMounts:
+          - mountPath: /usr/src/node-red/node_modules/node-red
+            name: settings
+        restartPolicy: Always
+        volumes:
+        - name: settings
+          configMap:
+            name: node-red-config
+            items:
+            - key: settings.js
+              path: settings.js
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 8 }}
     {{- end }}
