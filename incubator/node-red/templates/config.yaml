@@ -4,4 +4,4 @@ metadata:
   name: node-red-config
 data:
   settings.js: |-
-  {{ include "config/settings.js"  .| printf "%s" | indent 4 }}
+  {{ .Files.Get "config/settings.js" | b64enc }}
