@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: node-red-config
 data:
-  settings.js: |-
-  {{ .Files.Get "config/settings.js" | b64enc }}
+  settings.js: {{ range .Files.Lines "config/settings.js" }}
+    {{ . }}{{ end }}
