@@ -3,7 +3,15 @@ kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
 data:
-  {{ range $path := .Files.Glob "**.js" }}
-  {{ $path }}: |
-  {{ .Files.Get $path }}
-  {{ end }}
+  settings.js: |-
+    module.exports = {
+      editorTheme: {
+         projects: {
+             enabled: true
+         }
+      }
+      uiPort: process.env.PORT || 1880,
+      mqttReconnectTime: 15000,
+      serialReconnectTime: 15000,
+      debugMaxLength: 1000
+    }
