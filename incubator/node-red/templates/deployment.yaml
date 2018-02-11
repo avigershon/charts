@@ -30,8 +30,9 @@ spec:
             path: /
             port: {{ .Values.service.internalPort }}
         volumeMounts:
-        - mountPath: /usr/src/node-red/node_modules/node-red/settings
+        - mountPath: /usr/src/node-red/node_modules/node-red/settings.js
           name: settings
+          subPath: settings.js
         resources:
 {{ toYaml .Values.resources | indent 12 }}
       restartPolicy: Always
