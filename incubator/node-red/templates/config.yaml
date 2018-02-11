@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: node-red-config
+  name: {{ .Release.Name }}-config
 data:
-  settings.js: {{ range .Files.Lines "config/settings.js" }}
-    {{ . }}{{ end }}
+  token: |-
+    {{ .Files.Get "config/settings.js" | b64enc }}
