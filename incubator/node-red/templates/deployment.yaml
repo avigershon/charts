@@ -31,7 +31,6 @@ spec:
               port: {{ .Values.service.internalPort }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}
-    {{- if .Values.nodeSelector }}
           volumeMounts:
           - mountPath: /usr/src/node-red/node_modules/node-red
             name: settings
@@ -43,6 +42,7 @@ spec:
             items:
             - key: settings.js
               path: settings.js
+    {{- if .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 8 }}
     {{- end }}
