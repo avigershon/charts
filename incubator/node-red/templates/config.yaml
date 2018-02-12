@@ -9,7 +9,7 @@ data:
          projects: {
              enabled: true
          }
-      }
+      },
       uiPort: process.env.PORT || 1880,
       mqttReconnectTime: 15000,
       serialReconnectTime: 15000,
