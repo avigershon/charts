@@ -8,12 +8,12 @@ image:
   pullPolicy: IfNotPresent
 service:
   name: node-red
-  type: ClusterIP
-  externalPort: 1880
+  type: LoadBalancer
+  externalPort: 80
   internalPort: 1880
   
 persistence:
-  enabled: true
+  enabled: false
 
   ## node-red data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
@@ -32,12 +32,13 @@ persistence:
   subPath: ""
   
 ingress:
-  enabled: false
+  
+  enabled: true
   # Used to create an Ingress record.
   #hosts:
   #  - chart-example.local
   annotations:
-    # kubernetes.io/ingress.class: nginx
+    kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   tls:
     # Secrets must be manually created in the namespace.
