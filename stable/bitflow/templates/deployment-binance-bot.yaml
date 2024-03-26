@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitflow-binance-bot
+  labels:
+    app: bitflow-binance-bot
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: bitflow-binance-bot
+  template:
+    metadata:
+      labels:
+        app: bitflow-binance-bot
+    spec:
+      containers:
+        - name: bitflow-binance-bot
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ["npm", "run", "app"]
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          ports:
+            - containerPort: 3000

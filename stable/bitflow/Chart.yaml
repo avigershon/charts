@@ -1,0 +1,4 @@
+apiVersion: v2
+name: bitflow
+description: A Helm chart for deploying bitflow
+version: 0.1.0

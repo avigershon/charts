@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitflow-wise-bot
+  labels:
+    app: bitflow-wise-bot
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: bitflow-wise-bot
+  template:
+    metadata:
+      labels:
+        app: bitflow-wise-bot
+    spec:
+      containers:
+        - name: bitflow-wise-bot
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ["npm", "run", "wise"]
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          ports:
+            - containerPort: 3000

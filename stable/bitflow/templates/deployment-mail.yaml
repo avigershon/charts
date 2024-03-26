@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bitflow-mail
+  labels:
+    app: bitflow-mail
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: bitflow-mail
+  template:
+    metadata:
+      labels:
+        app: bitflow-mail
+    spec:
+      containers:
+        - name: bitflow-mail
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ["npm", "run", "gmail"]
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          ports:
+            - containerPort: 3000
