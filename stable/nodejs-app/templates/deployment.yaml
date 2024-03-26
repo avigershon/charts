@@ -17,6 +17,7 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ["npm", "run", "{{ .Values.runScript }}"]
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           ports:
